@@ -1,57 +1,49 @@
-# AI Trading Platform
+# Hi, I'm Chun-Chi Wang 👋
 
-**Reliability-focused trading analysis and backtesting platform built with FastAPI, PostgreSQL and Next.js.**
+Computer Science student at Asia University, currently focused on **Backend & Software Engineering**.
 
-這是一個以 **可重現（reproducible）**、**可稽核（auditable）** 與 **安全失敗（fail-closed）** 為核心的 AI 輔助技術分析平台。系統提供類似簡化版 TradingView 的分析介面，產生並保存研究訊號，但**不連接券商、不管理資金，也不執行真實交易**。
+I enjoy building systems where correctness, reproducibility, data integrity, and testing matter — with experience across backend development, infrastructure, and applied machine learning.
 
-> **Current status — Engineering baseline complete.**
-> 決定性分析引擎、風險檢查、可選的 OpenAI 二次驗證、PostgreSQL 不可變稽核軌跡、回測框架與 Next.js 分析介面皆已完成工程基線。BTCUSDT／ETHUSDT 使用 Binance 公開 Spot Kline API 的已收盤 OHLCV；沒有可靠行情來源時系統會明確拒絕，而不是補造價格。
+## Featured Projects
 
-## Engineering Highlights
+### AI Trading Platform
 
-| 面向                           | 實作成果                                                                                                                 |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **Backend architecture**     | FastAPI、Pydantic、SQLAlchemy、Alembic、PostgreSQL 16；API、backtesting、database、engines、market data、schemas 與 services 分層 |
-| **Database integrity**       | PostgreSQL `CHECK` 與 trigger 保護 lifecycle、execution evidence、snapshot 與 AI-validation evidence，包含直接 SQL 改寫防護         |
-| **Reproducible backtesting** | Dataset、strategy、configuration、source 與 run 使用 canonical identity；分析與回測共用決定性引擎                                       |
-| **Temporal correctness**     | 僅使用已收盤 K 線，處理 cutoff、多週期對齊與 delayed confirmation，避免 look-ahead bias / repainting                                     |
-| **Bounded AI**               | OpenAI 只可確認、拒絕或降低既有候選信心，不得創造方向或改寫 Entry／TP／SL；停用 AI 時核心流程仍可運作                                                        |
-| **Full-stack quality**       | Next.js／TypeScript 儀表板、request-race protection、明確 unavailable / no-signal 狀態，以及 CI、單元、整合與瀏覽器測試                       |
+**Python · FastAPI · PostgreSQL · SQLAlchemy · Alembic · Docker · Next.js**
 
-## Verification Snapshot
+A deterministic and auditable trading-analysis and backtesting platform.
 
-| Quality gate                      |                                                  Result |
-| --------------------------------- | ------------------------------------------------------: |
-| Backend tests                     |                                          **899 passed** |
-| Real PostgreSQL integration tests |                                          **109 passed** |
-| Backend line coverage             |                                              **90.90%** |
-| Frontend unit/component tests     |                                           **69 passed** |
-| Real Chromium browser cases       |                                           **74 passed** |
-| Static / build gates              | Ruff, mypy, TypeScript, ESLint, production build passed |
+* PostgreSQL-enforced lifecycle and historical evidence integrity
+* Reproducible strategy, configuration, dataset, and run identities
+* Closed-candle and multi-timeframe handling to prevent look-ahead bias
+* Optional bounded AI validation that cannot modify trading levels or direction
+* CI covering backend, real PostgreSQL integration, frontend, and browser tests
 
-這些數字驗證的是**工程規則、資料完整性與回歸防護**，不代表策略獲利、真實成交品質或 production trading readiness。
+[View Repository](https://github.com/wangj6231/ai-trading-platform)
 
-## Architecture at a Glance
+### WoundCare System
 
-```text
-Market Data
-    ↓
-Deterministic Analysis Engine
-(Indicators → Structure → SMC/ICT)
-    ↓
-Risk Engine
-    ↓
-Optional Bounded AI Validation
-    ↓
-Final Signal
-    ↓
-PostgreSQL Audit Trail / Backtest / Statistics
-    ↓
-Next.js Analysis Dashboard
-```
+**Python · PyTorch · YOLO · scikit-learn · FastAPI**
 
-### Engineering case study: performance without changing semantics
+A research-oriented wound image classification and decision-support prototype.
 
-P3 incremental replay 在完整輸出差異測試下維持與 reference path 的語意等價：R1 共 **1,440 個 cutoff 全部一致**，量測整體吞吐約提升 **2.9×**。但後段 evaluation cost 仍持續成長，因此結果保留為 `PERFORMANCE_STILL_INSUFFICIENT`，沒有為了漂亮數字改動已凍結的策略、風險或執行規則。
+* Identified duplicate-image leakage in an initial 98.34% cross-validation result
+* Rebuilt evaluation using MD5 content grouping and GroupKFold
+* Achieved 87.40% ± 2.78% leakage-free development accuracy
+* Achieved 46/48 on a one-time locked blind test
+* Keeps AI output behind explicit human review
 
-**深入閱讀：** [Project Status](PROJECT_STATUS.md) · [Verification](VERIFICATION.md) · [Security](SECURITY.md) · [P3 Engineering Report](experiments/r1e_p3_incremental/P3_REPORT.md)
+[View Repository](https://github.com/wangj6231/woundcare-system)
+
+## Tech
+
+**Languages:** Python, JavaScript, SQL, HTML/CSS
+**Backend:** FastAPI, PostgreSQL, SQLAlchemy, REST APIs
+**Infrastructure:** Linux, Docker, SSH, Proxmox VE, TrueNAS
+**AI / ML:** PyTorch, YOLO, scikit-learn, Pandas
+**Tools:** Git, GitHub, Pytest
+
+## Currently
+
+* 🎓 B.S. in Computer Science, Asia University — expected graduation 2027
+* 💻 Preparing for Backend / Software Engineer roles
+* 📍 Taiwan
